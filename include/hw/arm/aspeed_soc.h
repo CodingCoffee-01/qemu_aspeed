@@ -31,6 +31,7 @@
 #include "hw/usb/hcd-ehci.h"
 #include "qom/object.h"
 #include "hw/misc/aspeed_lpc.h"
+#include "hw/misc/aspeed_pwm.h"
 
 #define ASPEED_SPIS_NUM  2
 #define ASPEED_EHCIS_NUM 2
@@ -68,6 +69,7 @@ struct AspeedSoCState {
     AspeedSDHCIState emmc;
     AspeedLPCState lpc;
     uint32_t uart_default;
+    AspeedPWMState pwm;
 };
 
 #define TYPE_ASPEED_SOC "aspeed-soc"
