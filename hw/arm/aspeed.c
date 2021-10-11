@@ -162,7 +162,8 @@ struct AspeedMachineState {
 #define AST2600_EVB_HW_STRAP2 0x00000003
 
 /* Tacoma hardware value */
-#define TACOMA_BMC_HW_STRAP1  (0x00000000 | AST26500_HW_STRAP_BOOT_SRC_EMMC)
+// #define TACOMA_BMC_HW_STRAP1  (0x00000000 | AST26500_HW_STRAP_BOOT_SRC_EMMC)
+#define TACOMA_BMC_HW_STRAP1  0x00000000
 #define TACOMA_BMC_HW_STRAP2  0x00000040
 
 /* Rainier hardware value: (QEMU prototype) */
@@ -1087,7 +1088,7 @@ static void aspeed_machine_romulus_class_init(ObjectClass *oc, void *data)
     amc->fmc_model = "n25q256a";
     amc->spi_model = "mx66l1g45g";
     amc->num_cs    = 2;
-    amc->i2c_init  = romulus_bmc_i2c_init;
+    amc->i2c_init  = witherspoon_bmc_i2c_init;
     mc->default_ram_size       = 512 * MiB;
     mc->default_cpus = mc->min_cpus = mc->max_cpus =
         aspeed_soc_num_cpus(amc->soc_name);
