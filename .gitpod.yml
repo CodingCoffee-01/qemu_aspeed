@@ -1,0 +1,8 @@
+# CodingCoffee  qemu bmc , more courses : http://www.codingcoffee.org
+tasks:
+  - init: echo 'this is codingcoffee gitpod qemu from https://github.com/legoater/qemu ' # runs during prebuild
+    command: echo 'build hello.c and hello.cpp' && mkdir build && cd build && ../configure && make
+# CodingCoffee  qemu bmc,  more courses : http://www.codingcoffee.org
+ports:
+  - port: 3000
+    onOpen: open-preview
