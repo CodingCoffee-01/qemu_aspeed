@@ -1,7 +1,7 @@
 # CodingCoffee  qemu bmc , more courses : http://www.codingcoffee.org
 tasks:
   - init: echo 'this is codingcoffee gitpod qemu from https://github.com/legoater/qemu ' # runs during prebuild
-    command:  mkdir build && cd build && ../configure && make
+    command:  mkdir build && cd build && ../configure --target-list=arm-softmmu && make -j $(nproc)
 # CodingCoffee  qemu bmc,  more courses : http://www.codingcoffee.org
 ports:
   - port: 3000
