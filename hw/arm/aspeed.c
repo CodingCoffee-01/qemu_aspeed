@@ -557,6 +557,8 @@ static void romulus_bmc_i2c_init(AspeedMachineState *bmc)
      * good enough */
     /* i2c  1 bus*/
     /* i2c  2 bus*/
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 2), "pca9546", 0x74);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 2), "pca9548", 0x77);
     /* i2c  3 bus*/
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 3), "pca9552", 0x60);
     /* i2c  4 bus*/
