@@ -203,6 +203,10 @@ static const MemoryRegionOps max_ram_ops = {
 #define AST_SMP_MBOX_CODE               (AST_SMP_MAILBOX_BASE + 0x10)
 #define AST_SMP_MBOX_GOSIGN             0xabbaab00
 
+#define TYPE_LM75 TYPE_TMP105
+#define TYPE_TMP75 TYPE_TMP105
+#define TYPE_TMP422 "tmp422"
+
 static void aspeed_write_smpboot(ARMCPU *cpu,
                                  const struct arm_boot_info *info)
 {
@@ -716,14 +720,15 @@ static void witherspoon_bmc_i2c_init(AspeedMachineState *bmc)
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 5), "ir35221", 0x71);
 
 
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x48);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x49);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4a);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4b);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4c);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4d);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4e);
-    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4f);
+
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x48);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x49);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4a);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4b);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4c);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4d);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4e);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), TYPE_LM75, 0x4f);
 
     /* The Witherspoon expects a TMP275 but a TMP105 is compatible */
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 9), TYPE_TMP105,
@@ -904,10 +909,6 @@ static void get_pca9548_channels(I2CBus *bus, uint8_t mux_addr,
         channels[i] = pca954x_i2c_get_bus(mux, i);
     }
 }
-
-#define TYPE_LM75 TYPE_TMP105
-#define TYPE_TMP75 TYPE_TMP105
-#define TYPE_TMP422 "tmp422"
 
 static void fuji_bmc_i2c_init(AspeedMachineState *bmc)
 {
