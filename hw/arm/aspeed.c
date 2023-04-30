@@ -715,6 +715,16 @@ static void witherspoon_bmc_i2c_init(AspeedMachineState *bmc)
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 5), "ir35221", 0x70);
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 5), "ir35221", 0x71);
 
+
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x48);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x49);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4a);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4b);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4c);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4d);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4e);
+    i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 7), "lm75a", 0x4f);
+
     /* The Witherspoon expects a TMP275 but a TMP105 is compatible */
     i2c_slave_create_simple(aspeed_i2c_get_bus(&soc->i2c, 9), TYPE_TMP105,
                      0x4a);
